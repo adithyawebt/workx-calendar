@@ -1,6 +1,6 @@
 
 
-# WorkX Calendar App
+# WorkX Plugins
 
 This is a simple React application built with TypeScript and Vite. It includes a calendar component and a schedule component. The calendar allows users to navigate through months and select specific days, and the schedule displays events for the selected day.
 
@@ -37,18 +37,16 @@ npm run dev
 ```
 Open your browser and navigate to the dynamically generated localhost path. If you are using a code editor that supports it (e.g., Visual Studio Code), you can also use the "Alt/Command + Click" feature on the path to open it directly in your default browser.
 
-## Example:
-
-In Visual Studio Code, hover over the localhost path in the terminal, hold down the "Alt" key (Windows/Linux) or "Command" key (Mac), and click on the path to open it in your default browser.
-Features
+## Components 
 Calendar Component: Allows navigation through months, selection of specific days, and highlights the selected day.
 
 Schedule Component: Displays events for the selected day. Currently, the schedule is populated with placeholder events.
 
 ## Built With
-1. React - A JavaScript library for building user interfaces.
-2. TypeScript - A superset of JavaScript that adds static typing.
-3. Vite - A fast development server and build tool for modern web development.
-4. SCSS - CSS with superpowers for styling.
+- React - A JavaScript library for building user interfaces.
+- TypeScript - A superset of JavaScript that adds static typing.
+- Vite - A fast development server and build tool for modern web development.
+- SCSS - CSS with superpowers for styling.
+
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
