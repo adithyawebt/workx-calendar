@@ -26,7 +26,7 @@ const Calendar = () => {
     const [selectedDay, setSelectedDay] = useState<number>(new Date().getDate());
     const [currentYear, setCurrentYear] = useState<number>(new Date().getFullYear());
     const [currentMonth, setCurrentMonth] = useState<number>(new Date().getMonth());
-    const [events, setEvents] = useState<Record<number, string[]>>({}); // Events state
+    const [events, setEvents] = useState<Record<number, string[]>>({}); // Events state - not used yet
 
     const months = [
         'January', 'February', 'March', 'April',
@@ -80,8 +80,6 @@ const Calendar = () => {
                     </div>
                 ))}
             </div>
-
-            {/* Render Schedule component with events and selectedDay prop */}
             <Schedule events={events} selectedDay={selectedDay} />
         </div>
     );
