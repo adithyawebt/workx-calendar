@@ -1,0 +1,53 @@
+.calendar {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    max-width: 400px;
+
+    .header {
+        display: flex;
+        gap: 8px;
+        justify-content: space-between;
+    }
+
+    .days {
+        display: flex;
+        gap: 8px;
+        font-weight: bold;
+    }
+
+    .dayName {
+        width: calc(100% / 7);
+        box-sizing: border-box;
+        text-align: center;
+        padding: 8px;
+    }
+
+    .grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .day {
+        width: calc(100% / 7);
+        box-sizing: border-box;
+        text-align: center;
+        padding: 12px;
+        border: 1px solid #eee;
+        border-radius: 4px;
+
+        span {
+            display: block;
+        }
+
+        &.active {
+            background: linear-gradient(135deg, #3498db, #e74c3c);
+            color: #fff;
+            font-weight: bold;
+        }
+    }
+}
