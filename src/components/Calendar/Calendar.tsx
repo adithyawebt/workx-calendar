@@ -1,10 +1,11 @@
+// Calendar.tsx
 import React, { useState } from 'react';
 import styles from './Calendar.module.scss';
+import Schedule from '../Schedule/Schedule';
 
 const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-
-export const Calendar = () => {
+const Calendar = () => {
     const getDaysArray = (year: number, month: number) => {
         const daysArray = [];
         const firstDayOfMonth = new Date(year, month, 1);
@@ -25,6 +26,7 @@ export const Calendar = () => {
     const [selectedDay, setSelectedDay] = useState<number>(new Date().getDate());
     const [currentYear, setCurrentYear] = useState<number>(new Date().getFullYear());
     const [currentMonth, setCurrentMonth] = useState<number>(new Date().getMonth());
+    const [events, setEvents] = useState<Record<number, string[]>>({}); // Events state
 
     const months = [
         'January', 'February', 'March', 'April',
@@ -51,12 +53,12 @@ export const Calendar = () => {
     return (
         <div className={styles.calendar}>
             <div className={styles.header}>
-                <select value={currentMonth.toString()} onChange={handleMonthChange}>
+                <select className={styles.monthSelector} value={currentMonth.toString()} onChange={handleMonthChange}>
                     {months.map((month, index) => (
                         <option key={index} value={index.toString()}>{month}</option>
                     ))}
                 </select>
-                <select value={currentYear.toString()} onChange={handleYearChange}>
+                <select className={styles.yearSelector} value={currentYear.toString()} onChange={handleYearChange}>
                     {years.map((year) => (
                         <option key={year} value={year.toString()}>{year}</option>
                     ))}
@@ -78,6 +80,11 @@ export const Calendar = () => {
                     </div>
                 ))}
             </div>
+
+            {/* Render Schedule component with events and selectedDay prop */}
+            <Schedule events={events} selectedDay={selectedDay} />
         </div>
     );
 };
+
+export default Calendar;

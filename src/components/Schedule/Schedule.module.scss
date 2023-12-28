@@ -1,0 +1,26 @@
+.schedule {
+    margin-top: 16px;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    max-width: 400px;
+    background: linear-gradient(135deg, #3498db, #e73cc8);
+
+    h3 {
+        color: #ffffff;
+        margin-bottom: 8px;
+    }
+
+    p {
+        color: #cacaca;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+            margin-bottom: 4px;
+        }
+    }
+}
