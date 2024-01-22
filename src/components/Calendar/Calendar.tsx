@@ -49,6 +49,12 @@ const Calendar = () => {
         setSelectedDay(day);
     };
 
+    const handleDayChange = (newDay: number) => {
+        if (newDay > 0 && newDay <= getDaysArray(currentYear, currentMonth).length) {
+            setSelectedDay(newDay);
+        }
+    };
+
     return (
         <div className={styles.calendar}>
             <div className={styles.header}>
@@ -79,7 +85,7 @@ const Calendar = () => {
                     </div>
                 ))}
             </div>
-            <Schedule events={events} selectedDay={selectedDay} />
+            <Schedule events={events} selectedDay={selectedDay} onDayChange={handleDayChange}/>
         </div>
     );
 };
