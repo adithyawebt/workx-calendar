@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styles from './Schedule.module.scss';
 
 interface ScheduleProps {
@@ -7,19 +8,35 @@ interface ScheduleProps {
 
 const Schedule = ({ events, selectedDay }: ScheduleProps) => {
     const dayEvents = events[selectedDay] || [];
+    const [selectedTab, setSelectedTab] = useState<'Summary' | 'Leaves'>('Summary');
 
     return (
         <div className={styles.schedule}>
-            <h3>Events for {selectedDay}</h3>
-            {dayEvents.length === 0 ? (
-                <p>No events for this day.</p>
-            ) : (
-                <ul>
-                    {dayEvents.map((event, index) => (
-                        <li key={index}>{event}</li>
-                    ))}
-                </ul>
-            )}
+            <div className={styles.tabsHolder}>
+                <div
+                    className={`${styles.tab} ${selectedTab === 'Summary' ? styles.selected : ''}`}
+                    onClick={() => setSelectedTab('Summary')}>
+                    Summary
+                </div>
+                <div className={styles.divider}></div>
+                <div
+                    className={`${styles.tab} ${selectedTab === 'Leaves' ? styles.selected : ''}`}
+                    onClick={() => setSelectedTab('Leaves')}>
+                    Leaves
+                </div>
+            </div>
+            <div className={styles.contentHolder}>
+                {selectedTab === 'Summary' && (
+                    <div className={styles.content}>
+                        
+                    </div>
+                )}
+                {selectedTab === 'Leaves' && (
+                    <div className={styles.content}>
+
+                    </div>
+                )}
+            </div>
         </div>
     );
 };
