@@ -1,4 +1,3 @@
-// Calendar.tsx
 import React, { useState } from 'react';
 import styles from './Calendar.module.scss';
 import Schedule from '../Schedule/Schedule';

@@ -1,10 +1,12 @@
+@import '../../common/colors.scss';
+
 .schedule {
     margin-top: 16px;
     padding: 16px;
     border: 1px solid #ccc;
     border-radius: 8px;
     max-width: 400px;
-    background: linear-gradient(135deg, #3498db, #e73cc8);
+    background: linear-gradient(135deg, $primary, $contrast);
 
     h3 {
         color: #ffffff;
