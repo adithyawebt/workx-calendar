@@ -58,6 +58,7 @@ const Calendar = () => {
 
     return (
         <div className={styles.calendar}>
+            <span className={styles.logo}>Work-<span>x</span><span>Calendar</span></span>
             <div className={styles.header}>
                 <select className={styles.monthSelector} value={currentMonth.toString()} onChange={handleMonthChange}>
                     {months.map((month, index) => (

@@ -1,0 +1,106 @@
+[
+    {
+        "time": "8 AM",
+        "details": [
+            "Employee 1 Checked in at 8:04 AM",
+            "Employee 3 is in a meeting with Client 1 starting at 8:30 AM",
+            "Employee 2 Checked out at 8:35 AM"
+        ]
+    },
+    {
+        "time": "9 AM",
+        "details": [
+            "Employee 2 Checked in at 9:41 AM",
+            "Employee 1 Checked out at 9:44 AM",
+            "Employee 4 is in a meeting with Client 2 starting at 9:45 AM"
+        ]
+    },
+    {
+        "time": "10 AM",
+        "details": [
+            "Employee 3 is in a meeting with Client 1 starting at 10:15 AM",
+            "Employee 4 Checked out",
+            "Employee 5 Checked-in at 10:28 AM"
+        ]
+    },
+    {
+        "time": "11 AM",
+        "details": [
+            "Employee 3 is in a meeting with Client 1 starting at 10:15 AM",
+            "Employee 4 Checked out",
+            "Employee 5 Checked-in at 10:28 AM"
+        ]
+    },
+    {
+        "time": "12 PM",
+        "details": [
+            "Employee 1 Checked in at 12:04 PM",
+            "Employee 3 is in a meeting with Client 1 starting at 12:30 PM",
+            "Employee 2 Checked out at 12:35 PM"
+        ]
+    },
+    {
+        "time": "1 PM",
+        "details": [
+            "Employee 2 Checked in at 1:41 PM",
+            "Employee 1 Checked out at 1:44 PM",
+            "Employee 4 is in a meeting with Client 2 starting at 1:45 PM"
+        ]
+    },
+    {
+        "time": "2 PM",
+        "details": [
+            "Employee 3 is in a meeting with Client 1 starting at 2:15 PM",
+            "Employee 4 Checked out",
+            "Employee 5 Checked-in at 2:28 PM"
+        ]
+    },
+    {
+        "time": "3 PM",
+        "details": [
+            "Employee 3 is in a meeting with Client 1 starting at 3:15 PM",
+            "Employee 4 Checked out",
+            "Employee 5 Checked-in at 3:28 PM"
+        ]
+    },
+    {
+        "time": "4 PM",
+        "details": [
+            "Employee 1 Checked in at 4:04 PM",
+            "Employee 3 is in a meeting with Client 1 starting at 4:30 PM",
+            "Employee 2 Checked out at 4:35 PM"
+        ]
+    },
+    {
+        "time": "5 PM",
+        "details": [
+            "Employee 2 Checked in at 5:41 PM",
+            "Employee 1 Checked out at 5:44 PM",
+            "Employee 4 is in a meeting with Client 2 starting at 5:45 PM"
+        ]
+    },
+    {
+        "time": "6 PM",
+        "details": [
+            "Employee 3 is in a meeting with Client 1 starting at 6:15 PM",
+            "Employee 4 Checked out",
+            "Employee 5 Checked-in at 6:28 PM"
+        ]
+    },
+    {
+        "time": "7 PM",
+        "details": [
+            "Employee 3 is in a meeting with Client 1 starting at 7:15 PM",
+            "Employee 4 Checked out",
+            "Employee 5 Checked-in at 7:28 PM"
+        ]
+    },
+    {
+        "time": "8 PM",
+        "details": [
+            "Employee 1 Checked in at 8:04 PM",
+            "Employee 3 is in a meeting with Client 1 starting at 8:30 PM",
+            "Employee 2 Checked out at 8:35 PM"
+        ]
+    }
+]

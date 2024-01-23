@@ -1,0 +1,47 @@
+[
+    {
+        "projectName": "Project One",
+        "clientName": "Client One",
+        "status": "OnTrack",
+        "tasks": [
+            {
+                "taskName": "Task 1",
+                "assignedTo": "Employee 1"
+            },
+            {
+                "taskName": "Task 2",
+                "assignedTo": "Employee 2"
+            }
+        ]
+    },
+    {
+        "projectName": "Project Two",
+        "clientName": "Client Two",
+        "status": "Risk",
+        "tasks": [
+            {
+                "taskName": "Task 1",
+                "assignedTo": "Employee 3"
+            },
+            {
+                "taskName": "Task 2",
+                "assignedTo": "Employee 4"
+            }
+        ]
+    },
+    {
+        "projectName": "Project Three",
+        "clientName": "Client Three",
+        "status": "Archived",
+        "tasks": [
+            {
+                "taskName": "Task 1",
+                "assignedTo": "Employee 5"
+            },
+            {
+                "taskName": "Task 2",
+                "assignedTo": "Employee 6"
+            }
+        ]
+    }
+]

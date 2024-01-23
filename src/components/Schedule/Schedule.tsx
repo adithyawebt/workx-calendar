@@ -4,18 +4,27 @@ import styles from './Schedule.module.scss';
 import RightArrow from '../../assets/icons/circle-right.svg';
 import LeftArrow from '../../assets/icons/circle-left.svg';
 
+import summaryData from '../../mockData/summaryData.json';
+import projectData from '../../mockData/projectData.json';
+import leaveData from '../../mockData/leaveData.json'
+
+// import { SummaryInfo, ProjectInfo, LeaveInfo } from '../../interfaces/ScheduleInterface';
+
 interface ScheduleProps {
-    // events: Record<number, string[]>;
     selectedDay: number;
     onDayChange: (newDay: number) => void,
 }
 
 const Schedule = ({
-    // events,
     selectedDay,
     onDayChange }: ScheduleProps) => {
-    // const dayEvents = events[selectedDay] || [];
     const [selectedTab, setSelectedTab] = useState<'Summary' | 'Tasks' | 'Leaves'>('Summary');
+
+    const statusClassMap: Record<string, string> = {
+        OnTrack: styles.onTrack,
+        Risk: styles.risk,
+        Archived: styles.archived,
+    };
 
     return (
         <div className={styles.schedule}>
@@ -45,41 +54,19 @@ const Schedule = ({
                         </div>
                         <div className={styles.divider}></div>
                         <div className={styles.contentDetails}>
-                            <div className={styles.detailsHolder}>
-                                <div className={styles.time}>8 AM</div>
-                                <div className={styles.details}>
-                                    <li>Employee 1 Checked in at 8:04AM</li>
-                                    <li>Employee 3 is in meeting with Client 1 starting at 8:30 AM</li>
-                                    <li>Employee 2 Checked out at 8:35AM</li>
-                                </div>
-                            </div>
-                            <div className={styles.dividerSmall}></div>
-                            <div className={styles.detailsHolder}>
-                                <div className={styles.time}>9 AM</div>
-                                <div className={styles.details}>
-                                    <li>Employee 2 Checked in at 9:41AM</li>
-                                    <li>Employee 1 Checked out at 9:44AM</li>
-                                    <li>Employee 4 is in meeting with Client 2 starting at 9:45 AM</li>
-                                </div>
-                            </div>
-                            <div className={styles.dividerSmall}></div>
-                            <div className={styles.detailsHolder}>
-                                <div className={styles.time}>10 AM</div>
-                                <div className={styles.details}>
-                                    <li>Employee 3 is in meeting with Client 1 starting at 10:15 AM</li>
-                                    <li>Employee 4 Checked out</li>
-                                    <li>Employee 5 Checked-in at 10:28AM</li>
-                                </div>
-                            </div>
-                            <div className={styles.dividerSmall}></div>
-                            <div className={styles.detailsHolder}>
-                                <div className={styles.time}>11 AM</div>
-                                <div className={styles.details}>
-                                    <li>Employee 3 is in meeting with Client 1 starting at 10:15 AM</li>
-                                    <li>Employee 4 Checked out</li>
-                                    <li>Employee 5 Checked-in at 10:28AM</li>
-                                </div>
-                            </div>
+                            {summaryData.map((summary, index) => (
+                                <>
+                                    <div key={index} className={styles.detailsHolder}>
+                                        <div className={styles.time}>{summary.time}</div>
+                                        <div className={styles.details}>
+                                            {summary.details.map((detail, detailIndex) => (
+                                                <li key={detailIndex}>{detail}</li>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    <div className={styles.dividerSmall}></div>
+                                </>
+                            ))}
                         </div>
                     </div>
                 )}
@@ -92,22 +79,27 @@ const Schedule = ({
                         </div>
                         <div className={styles.divider}></div>
                         <div className={styles.tasksHolder}>
-                            <div className={styles.projectHeader}>
-                                <div className={styles.projectName}>
-                                    <span>Project One</span><span>Client One</span>
+                            {projectData.map((project, index) => (
+                                <div key={index} className={styles.project}>
+                                    <div className={styles.projectHeader}>
+                                        <div className={styles.projectName}>
+                                            <span>{project.projectName}</span>
+                                            <span>{project.clientName}</span>
+                                        </div>
+                                        <div className={`${styles.projectStatus} ${statusClassMap[project.status]}`}>
+                                            {project.status}
+                                        </div>
+                                    </div>
+                                    {project.tasks.map((task, taskIndex) => (
+                                        <li key={taskIndex} className={styles.projectDetails}>
+                                            <span>{task.taskName}:</span>
+                                            <span>{task.assignedTo}</span>
+                                        </li>
+                                    ))}
+                                    <div className={styles.dividerSmall}></div>
                                 </div>
-                                <div className={styles.projectStatus}>On Track</div>
-                            </div>
-                            <li className={styles.projectDetails}>
-                                <span>Task 1:</span>
-                                <span>Employee 1</span>
-                            </li>
-                            <li className={styles.projectDetails}>
-                                <span>Task 2:</span>
-                                <span>Employee 3</span>
-                            </li>
+                            ))}
                         </div>
-                        <div className={styles.dividerSmall}></div>
                     </div>
                 )}
                 {selectedTab === 'Leaves' && (
@@ -118,10 +110,24 @@ const Schedule = ({
                             <img src={RightArrow} onClick={() => onDayChange(selectedDay + 1)} />
                         </div>
                         <div className={styles.divider}></div>
+                        <div className={styles.leaveContainer}>
+                            {leaveData.map((leave, index) => (
+                                <div key={index} className={styles.leave}>
+                                    <div className={styles.leaveType}>
+                                        <span>{leave.employee}</span>
+                                        <span>{leave.leaveType}</span>
+                                    </div>
+                                    <div className={styles.leaveDetails}>
+                                        <span>Start Date: <span>{leave.startDate}</span></span>
+                                        <span>End Date: <span>{leave.endDate}</span></span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 )}
             </div>
-        </div>
+        </div >
     );
 };
 

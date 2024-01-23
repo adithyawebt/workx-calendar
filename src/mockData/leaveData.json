@@ -1,0 +1,20 @@
+[
+    {
+        "employee": "Employee 1",
+        "leaveType": "Sick Leave",
+        "startDate": "23/01/2024",
+        "endDate": "23/01/2024"
+    },
+    {
+        "employee": "Employee 3",
+        "leaveType": "Vacation",
+        "startDate": "23/01/2024",
+        "endDate": "26/01/2024"
+    },
+    {
+        "employee": "Employee 2",
+        "leaveType": "Personal Leave",
+        "startDate": "24/01/2024",
+        "endDate": "25/01/2024"
+    }
+]

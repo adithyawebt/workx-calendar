@@ -12,6 +12,24 @@
     color: black;
     background-color: white;
 
+    .logo {
+        width: 100%;
+        text-align: left;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 30px;
+
+        span:nth-child(1) {
+            color: $primary;
+        }
+
+        span:nth-child(2) {
+            padding: 0 10px;
+            font-size: 14px;
+            font-family: 'Roboto Mono', monospace;
+            color: $contrast;
+        }
+    }
+
     .header {
         display: flex;
         align-items: center;
