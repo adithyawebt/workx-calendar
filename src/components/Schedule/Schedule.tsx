@@ -121,6 +121,7 @@ const Schedule = ({
                                         <span>Start Date: <span>{leave.startDate}</span></span>
                                         <span>End Date: <span>{leave.endDate}</span></span>
                                     </div>
+                                    <div className={styles.dividerSmall}></div>
                                 </div>
                             ))}
                         </div>
