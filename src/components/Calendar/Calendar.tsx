@@ -25,7 +25,7 @@ const Calendar = () => {
     const [selectedDay, setSelectedDay] = useState<number>(new Date().getDate());
     const [currentYear, setCurrentYear] = useState<number>(new Date().getFullYear());
     const [currentMonth, setCurrentMonth] = useState<number>(new Date().getMonth());
-    const [events, setEvents] = useState<Record<number, string[]>>({}); // Events state - not used yet
+    // const [events, setEvents] = useState<Record<number, string[]>>({}); // Events state - not used yet
 
     const months = [
         'January', 'February', 'March', 'April',
@@ -45,8 +45,9 @@ const Calendar = () => {
         setCurrentYear(selectedYear);
     };
 
-    const handleDayClick = (day: number) => {
-        setSelectedDay(day);
+    const handleDayClick = (day: string | number) => {
+        const numericDay = typeof day === 'number' ? day : parseInt(day, 10);
+        setSelectedDay(numericDay);
     };
 
     const handleDayChange = (newDay: number) => {
@@ -75,7 +76,7 @@ const Calendar = () => {
                 ))}
             </div>
             <div className={styles.grid}>
-                {getDaysArray(currentYear, currentMonth).map((day, index) => (
+                {getDaysArray(currentYear, currentMonth).map((day: string | number, index) => (
                     <div
                         key={index}
                         className={`${styles.day} ${day === selectedDay ? styles.active : ''}`}
@@ -85,7 +86,10 @@ const Calendar = () => {
                     </div>
                 ))}
             </div>
-            <Schedule events={events} selectedDay={selectedDay} onDayChange={handleDayChange}/>
+            <Schedule
+                // events={events}
+                selectedDay={selectedDay}
+                onDayChange={handleDayChange} />
         </div>
     );
 };

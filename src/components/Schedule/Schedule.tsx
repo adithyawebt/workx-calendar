@@ -5,14 +5,17 @@ import RightArrow from '../../assets/icons/circle-right.svg';
 import LeftArrow from '../../assets/icons/circle-left.svg';
 
 interface ScheduleProps {
-    events: Record<number, string[]>;
+    // events: Record<number, string[]>;
     selectedDay: number;
     onDayChange: (newDay: number) => void,
 }
 
-const Schedule = ({ events, selectedDay, onDayChange }: ScheduleProps) => {
-    const dayEvents = events[selectedDay] || [];
-    const [selectedTab, setSelectedTab] = useState<'Summary' | 'Leaves'>('Summary');
+const Schedule = ({
+    // events,
+    selectedDay,
+    onDayChange }: ScheduleProps) => {
+    // const dayEvents = events[selectedDay] || [];
+    const [selectedTab, setSelectedTab] = useState<'Summary' | 'Tasks' | 'Leaves'>('Summary');
 
     return (
         <div className={styles.schedule}>
@@ -21,6 +24,10 @@ const Schedule = ({ events, selectedDay, onDayChange }: ScheduleProps) => {
                     className={`${styles.tab} ${selectedTab === 'Summary' ? styles.selected : ''}`}
                     onClick={() => setSelectedTab('Summary')}>
                     Summary
+                </div>
+                <div className={`${styles.tab} ${selectedTab === 'Tasks' ? styles.selected : ''}`}
+                    onClick={() => setSelectedTab('Tasks')}>
+                    Tasks
                 </div>
                 <div
                     className={`${styles.tab} ${selectedTab === 'Leaves' ? styles.selected : ''}`}
@@ -76,6 +83,33 @@ const Schedule = ({ events, selectedDay, onDayChange }: ScheduleProps) => {
                         </div>
                     </div>
                 )}
+                {selectedTab === 'Tasks' && (
+                    <div className={styles.content}>
+                        <div className={styles.contentHeader}>
+                            <img src={LeftArrow} onClick={() => onDayChange(selectedDay - 1)} />
+                            <span>Tasks for {selectedDay}:</span>
+                            <img src={RightArrow} onClick={() => onDayChange(selectedDay + 1)} />
+                        </div>
+                        <div className={styles.divider}></div>
+                        <div className={styles.tasksHolder}>
+                            <div className={styles.projectHeader}>
+                                <div className={styles.projectName}>
+                                    <span>Project One</span><span>Client One</span>
+                                </div>
+                                <div className={styles.projectStatus}>On Track</div>
+                            </div>
+                            <li className={styles.projectDetails}>
+                                <span>Task 1:</span>
+                                <span>Employee 1</span>
+                            </li>
+                            <li className={styles.projectDetails}>
+                                <span>Task 2:</span>
+                                <span>Employee 3</span>
+                            </li>
+                        </div>
+                        <div className={styles.dividerSmall}></div>
+                    </div>
+                )}
                 {selectedTab === 'Leaves' && (
                     <div className={styles.content}>
                         <div className={styles.contentHeader}>
@@ -83,6 +117,7 @@ const Schedule = ({ events, selectedDay, onDayChange }: ScheduleProps) => {
                             <span>Leaves for {selectedDay}:</span>
                             <img src={RightArrow} onClick={() => onDayChange(selectedDay + 1)} />
                         </div>
+                        <div className={styles.divider}></div>
                     </div>
                 )}
             </div>
