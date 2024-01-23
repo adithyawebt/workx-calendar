@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './AuthPage.module.scss';
 
 const LoginSignup = () => {
@@ -12,17 +13,25 @@ const LoginSignup = () => {
 
     const [toggleAuthType, setToggleAuthType] = useState(true);
 
-    const handleLogin = () => {
-        console.log('Logging in with:', email, password);
+    const navigate = useNavigate();
+
+    //temporarily added below function since logic or API yet to be made for actual login or signup - acts a redirect
+    const redirectToPath = (path: string) => {
+        navigate(path);
     };
 
-    const handleSignup = () => {
-        console.log('Signing up with:', email, password);
-    };
+    //temporarily unused not to be removed as built for further API Logic for Sigup or Login
+    // const handleLogin = () => {
+    //     console.log('Logging in with:', email, password);
+    // };
 
-    const handleGoogleLogin = () => {
-        console.log('Logging in with Google');
-    };
+    // const handleSignup = () => {
+    //     console.log('Signing up with:', email, password);
+    // };
+
+    // const handleGoogleLogin = () => {
+    //     console.log('Logging in with Google');
+    // };
 
     const validateEmail = () => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -94,10 +103,16 @@ const LoginSignup = () => {
                 )}
             </div>
             <div className={styles.authActions}>
-                <button onClick={toggleAuthType ? handleLogin : handleSignup}>
+                <button
+                    onClick={() => redirectToPath('/home')}
+                //  onClick={toggleAuthType ? handleLogin : handleSignup}
+                >
                     {toggleAuthType ? 'Login' : 'Signup'}
                 </button>
-                <button onClick={handleGoogleLogin}>Google SSO</button>
+                <button
+                    onClick={() => redirectToPath('/home')}
+                // onClick={handleGoogleLogin}
+                >Google SSO</button>
             </div>
         </div>
     );

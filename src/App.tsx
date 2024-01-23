@@ -10,8 +10,8 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/auth" Component={AuthPage} />
-                <Route path="/" Component={Calendar} />
+                <Route path="/" Component={AuthPage} />
+                <Route path="/home" Component={Calendar} />
             </Routes>
         </Router>
     )
