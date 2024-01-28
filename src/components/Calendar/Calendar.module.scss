@@ -5,12 +5,11 @@
     flex-direction: column;
     gap: 8px;
     padding: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid $border;
     border-radius: 8px;
-    min-width: 400px;
-    max-width: 600px;
+    width: 100%;
     color: black;
-    background-color: white;
+    background-color: $contrast;
 
     .logo {
         width: 100%;
@@ -36,7 +35,7 @@
         justify-content: space-between;
 
         .monthSelector {
-            background-color: white;
+            background-color: $contrast;
             color: $primary;
             height: 35px;
             border-radius: 8px;
@@ -45,7 +44,7 @@
         }
 
         .yearSelector {
-            background-color: white;
+            background-color: $contrast;
             color: $primary;
             height: 35px;
             border-radius: 8px;
@@ -91,8 +90,8 @@
         }
 
         &.active {
-            background: linear-gradient(135deg, $primary, $contrast);
-            color: #fff;
+            background-color: $light;
+            color: $contrast;
             font-weight: bold;
         }
     }

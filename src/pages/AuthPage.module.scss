@@ -9,7 +9,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    background: linear-gradient(135deg, $primary, $contrast);
+    background-color: $contrast;
     border-radius: 25px;
 
     .authType {
@@ -23,7 +23,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: $primary;
             font-size: 24px;
             text-align: center;
             cursor: pointer;
@@ -34,8 +34,8 @@
             }
 
             &.active {
-                border: 1px solid white;
-                border-bottom: 3px solid white;
+                border: 1px solid $primary;
+                border-bottom: 3px solid $primary;
             }
         }
     }
@@ -47,15 +47,15 @@
         justify-content: center;
 
         label {
-            color: white;
+            color: $primary;
             font-size: 18px;
         }
 
         input {
             height: 30px;
             width: 200px;
-            background-color: white;
-            color: $primary;
+            background-color: $primary;
+            color: $contrast;
             border: transparent;
             outline: transparent;
             border-radius: 10px;
@@ -63,14 +63,19 @@
             font-size: 14px;
 
             &::placeholder {
-                color: $primary;
+                color: $contrast;
             }
+        }
+
+        span {
+            color: $primary;
         }
     }
 
     .authActions {
         width: 50%;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: space-between;
 
@@ -78,8 +83,8 @@
             border: transparent;
             outline: transparent;
             border-radius: 10px;
-            background-color: white;
-            color: $primary;
+            background-color: $primary;
+            color: $contrast;
             display: flex;
             align-items: center;
             justify-content: center;
