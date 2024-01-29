@@ -25,10 +25,6 @@ const LoginSignup = () => {
     //     console.log('Logging in with:', email, password);
     // };
 
-    // const handleSignup = () => {
-    //     console.log('Signing up with:', email, password);
-    // };
-
     // const handleGoogleLogin = () => {
     //     console.log('Logging in with Google');
     // };
@@ -42,23 +38,12 @@ const LoginSignup = () => {
         setPasswordError(password.length >= 6 ? '' : 'Password must be at least 6 characters');
     };
 
-    const validatePasswordConfirm = () => {
-        setPasswordConfirmError(password === passwordConfirm ? '' : 'Passwords do not match');
-    };
-
     return (
         <div className={styles.authContainer}>
-            <div className={styles.authType}>
-                <div
-                    className={`${styles.auth} ${toggleAuthType ? styles.active : ''}`}
-                    onClick={() => setToggleAuthType(true)}>
-                    Login
-                </div>
-                <div
-                    className={`${styles.auth} ${!toggleAuthType ? styles.active : ''}`}
-                    onClick={() => setToggleAuthType(false)}>
-                    Signup
-                </div>
+            <div
+                className={styles.authHeader}
+                onClick={() => setToggleAuthType(true)}>
+                Login
             </div>
             <div className={styles.authForm}>
                 <label htmlFor="email">Email:</label>
@@ -85,36 +70,20 @@ const LoginSignup = () => {
                     }}
                 />
                 <span>{passwordError}</span>
-                {!toggleAuthType && (
-                    <>
-                        <label htmlFor="confirmPassword">Confirm Password:</label>
-                        <input
-                            id="confirmPassword"
-                            type="password"
-                            placeholder="Confirm Password"
-                            value={passwordConfirm}
-                            onChange={(e) => {
-                                setPasswordConfirm(e.target.value);
-                                validatePasswordConfirm();
-                            }}
-                        />
-                        <span>{passwordConfirmError}</span>
-                    </>
-                )}
             </div>
             <div className={styles.authActions}>
                 <button
                     onClick={() => redirectToPath('/home')}
-                //  onClick={toggleAuthType ? handleLogin : handleSignup}
+                //  onClick={toggleAuthType ? handleLogin : ''}
                 >
                     {toggleAuthType ? 'Login' : 'Signup'}
                 </button>
                 <button
                     onClick={() => redirectToPath('/home')}
                 // onClick={handleGoogleLogin}
-                >Google SSO</button>
+                >Sign in with Google</button>
             </div>
-        </div>
+        </div >
     );
 };
 
