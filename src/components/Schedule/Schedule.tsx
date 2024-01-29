@@ -25,7 +25,7 @@ const Schedule = ({
 
     const [leaveData, setLeaveData] = useState<Record<string, { employeeName: string; leaveDetails: string; }[]> | null>(null);
     const [holidayData, setHolidayData] = useState<Record<string, { name: string; date: string; }[]> | null>(null);
-
+    const [currentDisplayedMonth, setCurrentDisplayedMonth] = useState<number>(selectedMonth);
 
     useEffect(() => {
         import('../../mockData/leaveData.json')
@@ -45,7 +45,7 @@ const Schedule = ({
             .catch((error) => {
                 console.error('Error loading holiday data:', error);
             });
-    }, []);
+    }, [selectedMonth]);
 
     const handleTaskClick = (index: number) => {
         const newTaskVisibility = [...taskVisibility];
@@ -70,19 +70,15 @@ const Schedule = ({
     ];
 
     const handleNextMonthClick = () => {
-        if (selectedMonth < 11) {
-            onMonthChange(selectedMonth + 1);
+        if (currentDisplayedMonth < 11) {
+            setCurrentDisplayedMonth(currentDisplayedMonth + 1);
         }
     };
 
     const handlePrevMonthClick = () => {
-        if (selectedMonth > 0) {
-            onMonthChange(selectedMonth - 1);
+        if (currentDisplayedMonth > 0) {
+            setCurrentDisplayedMonth(currentDisplayedMonth - 1);
         }
-    };
-
-    const onMonthChange = (newMonth: number) => {
-        console.log('Selected Month:', newMonth);
     };
 
     return (
@@ -175,7 +171,7 @@ const Schedule = ({
                     <div className={styles.content}>
                         <div className={styles.contentHeader}>
                             <img src={LeftArrow} onClick={handlePrevMonthClick} />
-                            <span>Leaves for {months[selectedMonth]}</span>
+                            <span>Leaves for {months[currentDisplayedMonth]}</span>
                             <img src={RightArrow} onClick={handleNextMonthClick} />
                         </div>
                         <div className={styles.divider}></div>
