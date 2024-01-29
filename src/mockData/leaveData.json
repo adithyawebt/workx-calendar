@@ -1,20 +1,58 @@
-[
-    {
-        "employee": "Employee 1",
-        "leaveType": "Sick Leave",
-        "startDate": "23/01/2024",
-        "endDate": "23/01/2024"
+{
+    "leaveData": {
+        "January": [
+            {
+                "employeeName": "John Doe",
+                "leaveDetails": "Vacation"
+            },
+            {
+                "employeeName": "Alice Smith",
+                "leaveDetails": "Sick leave"
+            }
+        ],
+        "February": [
+            {
+                "employeeName": "Bob Johnson",
+                "leaveDetails": "Family emergency"
+            },
+            {
+                "employeeName": "Emma Brown",
+                "leaveDetails": "Personal day"
+            }
+        ],
+        "March": [
+            {
+                "employeeName": "Charlie Wilson",
+                "leaveDetails": "Parental leave"
+            }
+        ]
     },
-    {
-        "employee": "Employee 3",
-        "leaveType": "Vacation",
-        "startDate": "23/01/2024",
-        "endDate": "26/01/2024"
-    },
-    {
-        "employee": "Employee 2",
-        "leaveType": "Personal Leave",
-        "startDate": "24/01/2024",
-        "endDate": "25/01/2024"
+    "holidayData": {
+        "January": [
+            {
+                "name": "New Year's Day",
+                "date": "2024-01-01"
+            },
+            {
+                "name": "Martin Luther King Jr. Day",
+                "date": "2024-01-15"
+            }
+        ],
+        "February": [
+            {
+                "name": "Presidents' Day",
+                "date": "2024-02-19"
+            }
+        ],
+        "March": [
+            {
+                "name": "International Women's Day",
+                "date": "2024-03-08"
+            },
+            {
+                "name": "St. Patrick's Day",
+                "date": "2024-03-17"
+            }
+        ]
     }
-]
+}

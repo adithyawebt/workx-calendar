@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Schedule.module.scss';
 
 import RightArrow from '../../assets/icons/circle-right.svg';
@@ -7,27 +7,83 @@ import DownArrow from '../../assets/icons/chevron-down.svg';
 import UpArrow from '../../assets/icons/chevron-up.svg';
 
 import summaryData from '../../mockData/summaryData.json';
-import taskData from '../..//mockData/taskData.json'
-import leaveData from '../../mockData/leaveData.json'
-
-// import { SummaryInfo, ProjectInfo, LeaveInfo } from '../../interfaces/ScheduleInterface'; //importing interface for future purposes
+import taskData from '../../mockData/taskData.json'
 
 interface OwnProps {
-    selectedDay: number;
+    selectedDay: number,
+    selectedMonth: number,
+    selectedYear: number,
     onDayChange: (newDay: number) => void,
 }
 
 const Schedule = ({
     selectedDay,
+    selectedMonth,
     onDayChange }: OwnProps) => {
     const [selectedTab, setSelectedTab] = useState<'Summary' | 'Tasks' | 'Leaves'>('Summary');
     const [taskVisibility, setTaskVisibility] = useState<boolean[]>(new Array(taskData.length).fill(false));
+
+    const [leaveData, setLeaveData] = useState<Record<string, { employeeName: string; leaveDetails: string; }[]> | null>(null);
+    const [holidayData, setHolidayData] = useState<Record<string, { name: string; date: string; }[]> | null>(null);
+
+
+    useEffect(() => {
+        import('../../mockData/leaveData.json')
+            .then((data) => {
+                console.log('Leave Data:', data);
+                setLeaveData(data.default.leaveData);
+            })
+            .catch((error) => {
+                console.error('Error loading leave data:', error);
+            });
+
+        import('../../mockData/leaveData.json')
+            .then((data) => {
+                console.log('Holiday Data:', data);
+                setHolidayData(data.default.holidayData);
+            })
+            .catch((error) => {
+                console.error('Error loading holiday data:', error);
+            });
+    }, []);
 
     const handleTaskClick = (index: number) => {
         const newTaskVisibility = [...taskVisibility];
         newTaskVisibility[index] = !newTaskVisibility[index];
         setTaskVisibility(newTaskVisibility);
     }
+
+    const getLeavesForMonth = () => {
+        const monthKey = months[selectedMonth];
+        return leaveData?.[monthKey] || [];
+    };
+
+    const getHolidaysForMonth = () => {
+        const monthKey = months[selectedMonth];
+        return holidayData?.[monthKey] || [];
+    };
+
+    const months = [
+        'January', 'February', 'March', 'April',
+        'May', 'June', 'July', 'August',
+        'September', 'October', 'November', 'December'
+    ];
+
+    const handleNextMonthClick = () => {
+        if (selectedMonth < 11) {
+            onMonthChange(selectedMonth + 1);
+        }
+    };
+
+    const handlePrevMonthClick = () => {
+        if (selectedMonth > 0) {
+            onMonthChange(selectedMonth - 1);
+        }
+    };
+
+    const onMonthChange = (newMonth: number) => {
+        console.log('Selected Month:', newMonth);
+    };
 
     return (
         <div className={styles.schedule}>
@@ -93,7 +149,7 @@ const Schedule = ({
                                             </div>
                                             <img
                                                 src={taskVisibility[index] ? UpArrow : DownArrow}
-                                                alt=""
+                                                alt="arrow"
                                                 onClick={(e) => {
                                                     e.stopPropagation();
                                                     handleTaskClick(index);
@@ -118,25 +174,28 @@ const Schedule = ({
                 {selectedTab === 'Leaves' && (
                     <div className={styles.content}>
                         <div className={styles.contentHeader}>
-                            <img src={LeftArrow} onClick={() => onDayChange(selectedDay - 1)} />
-                            <span>Leaves for {selectedDay}:</span>
-                            <img src={RightArrow} onClick={() => onDayChange(selectedDay + 1)} />
+                            <img src={LeftArrow} onClick={handlePrevMonthClick} />
+                            <span>Leaves for {months[selectedMonth]}</span>
+                            <img src={RightArrow} onClick={handleNextMonthClick} />
                         </div>
                         <div className={styles.divider}></div>
                         <div className={styles.leaveContainer}>
-                            {leaveData.map((leave, index) => (
-                                <div key={index} className={styles.leave}>
-                                    <div className={styles.leaveType}>
-                                        <span>{leave.employee}</span>
-                                        <span>{leave.leaveType}</span>
-                                    </div>
-                                    <div className={styles.leaveDetails}>
-                                        <span>Start Date: <span>{leave.startDate}</span></span>
-                                        <span>End Date: <span>{leave.endDate}</span></span>
-                                    </div>
-                                    <div className={styles.dividerSmall}></div>
-                                </div>
-                            ))}
+                            <div className={styles.leaves}>
+                                <span>Leaves</span>
+                                <ul>
+                                    {getLeavesForMonth().map((leave, index) => (
+                                        <li key={index}>{leave.employeeName}: {leave.leaveDetails}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div className={styles.holidays}>
+                                <span>Holidays</span>
+                                <ul>
+                                    {getHolidaysForMonth().map((holiday, index) => (
+                                        <li key={index}>{holiday.name}: {holiday.date}</li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 )}

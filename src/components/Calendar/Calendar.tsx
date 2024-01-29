@@ -48,11 +48,15 @@ const Calendar = () => {
     const handleDayClick = (day: string | number) => {
         const numericDay = typeof day === 'number' ? day : parseInt(day, 10);
         setSelectedDay(numericDay);
+        setCurrentMonth(currentMonth);
+        setCurrentYear(currentYear);
     };
 
     const handleDayChange = (newDay: number) => {
         if (newDay > 0 && newDay <= getDaysArray(currentYear, currentMonth).length) {
             setSelectedDay(newDay);
+            setCurrentMonth(currentMonth);
+            setCurrentYear(currentYear);
         }
     };
 
@@ -88,8 +92,9 @@ const Calendar = () => {
                 ))}
             </div>
             <Schedule
-                // events={events}
                 selectedDay={selectedDay}
+                selectedMonth={currentMonth}
+                selectedYear={currentYear}
                 onDayChange={handleDayChange} />
         </div>
     );
