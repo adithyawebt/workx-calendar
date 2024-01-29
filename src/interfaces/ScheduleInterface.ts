@@ -3,13 +3,6 @@ interface SummaryInfo {
     details: string[];
 }
 
-interface ProjectInfo {
-    projectName: string;
-    clientName: string;
-    status: 'OnTrack' | 'Risk' | 'Archived';
-    tasks: { taskName: string; assignedTo: string }[];
-}
-
 interface LeaveInfo {
     employee: string;
     leaveType: string;
@@ -17,4 +10,17 @@ interface LeaveInfo {
     endDate: string;
 }
 
-export type { SummaryInfo, ProjectInfo, LeaveInfo };
+interface TaskInfo {
+    employeeDetails: {
+        employeeName: string;
+        taskAssigned: string;
+    };
+    taskStatus: string;
+    taskDetails: {
+        client: string;
+        project: string;
+        additionalDetails: string;
+    };
+}
+
+export type { SummaryInfo, LeaveInfo, TaskInfo };

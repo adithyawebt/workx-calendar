@@ -5,11 +5,9 @@ import styles from './AuthPage.module.scss';
 const LoginSignup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [passwordConfirm, setPasswordConfirm] = useState('');
 
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
-    const [passwordConfirmError, setPasswordConfirmError] = useState('');
 
     const [toggleAuthType, setToggleAuthType] = useState(true);
 

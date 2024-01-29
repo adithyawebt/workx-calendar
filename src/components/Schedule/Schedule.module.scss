@@ -117,117 +117,104 @@
             align-items: center;
             justify-content: center;
 
-            .project {
+            .task {
                 width: 90%;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                justify-content: center;
-            }
 
-            .projectHeader {
-                width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin: 10px 0px;
-
-                .projectName {
-                    width: 50%;
+                .employeeDetails {
+                    width: 100%;
                     display: flex;
                     align-items: center;
-                    justify-content: space-between;
+                    justify-content: space-evenly;
 
                     span {
-                        width: 50%;
+                        width: 33%;
                     }
 
-                    span:nth-child(1) {
-                        font-size: 18px;
-                        font-weight: 600;
-                    }
-
-                    span:nth-child(2) {
-                        font-size: 14px;
+                    img {
+                        width: 15px;
+                        height: 15px;
                     }
                 }
 
-                .projectStatus {
-                    min-width: 80px;
-                    padding: 5px;
-                    border-radius: 5px;
-                }
+                .taskDetails {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: flex-start;
+                    text-align: left;
 
-                .onTrack {
-                    color: rgb(0, 160, 27);
-                    border: 2px solid rgb(0, 160, 37);
-                }
-
-                .risk {
-                    color: rgb(182, 0, 0);
-                    border: 2px solid rgb(182, 0, 0);
-                }
-
-                .archived {
-                    color: rgb(0, 0, 0);
-                    border: 2px solid rgb(0, 0, 0);
+                    span {
+                        width: 100%;
+                    }
                 }
             }
 
-            .projectDetails {
-                width: 90%;
-                display: flex;
-                align-items: center;
-                justify-content: flex-start;
-                margin: 5px 0;
+            .onTrack {
+                color: rgb(0, 160, 27);
+                border: 2px solid rgb(0, 160, 37);
+            }
+
+            .risk {
+                color: rgb(182, 0, 0);
+                border: 2px solid rgb(182, 0, 0);
+            }
+
+            .archived {
+                color: rgb(0, 0, 0);
+                border: 2px solid rgb(0, 0, 0);
             }
         }
 
-        .leaveContainer {
-            width: 90%;
+    }
+
+    .leaveContainer {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .leave {
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+        }
 
-            .leave {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
+        .leaveType {
+            width: 100%;
+            display: flex;
+            align-items: center;
+
+            span {
+                padding: 0px 10px;
             }
 
-            .leaveType {
-                width: 100%;
-                display: flex;
-                align-items: center;
+            span:nth-child(1) {
+                font-weight: 700;
+            }
+        }
 
-                span {
-                    padding: 0px 10px;
-                }
+        .leaveDetails {
+            width: 100%;
+            display: flex;
+            align-items: center;
+
+            span {
+                padding: 0px 10px;
+            }
+
+            span:nth-child(1),
+            span:nth-child(2) {
+                font-weight: 700;
 
                 span:nth-child(1) {
-                    font-weight: 700;
-                }
-            }
-
-            .leaveDetails {
-                width: 100%;
-                display: flex;
-                align-items: center;
-
-                span {
-                    padding: 0px 10px;
-                }
-
-                span:nth-child(1),
-                span:nth-child(2) {
-                    font-weight: 700;
-
-                    span:nth-child(1) {
-                        font-weight: 400;
-                    }
+                    font-weight: 400;
                 }
             }
         }

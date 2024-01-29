@@ -1,0 +1,62 @@
+[
+    {
+        "employeeDetails": {
+            "employeeName": "John Doe",
+            "taskAssigned": "Complete Project XYZ"
+        },
+        "taskStatus": "In Progress",
+        "taskDetails": {
+            "client": "ABC Corp",
+            "project": "Project XYZ",
+            "additionalDetails": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget semper dolor."
+        }
+    },
+    {
+        "employeeDetails": {
+            "employeeName": "Jane Smith",
+            "taskAssigned": "Review Code Changes"
+        },
+        "taskStatus": "Completed",
+        "taskDetails": {
+            "client": "XYZ Ltd",
+            "project": "Code Review",
+            "additionalDetails": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."
+        }
+    },
+    {
+        "employeeDetails": {
+            "employeeName": "Bob Johnson",
+            "taskAssigned": "Design UI for New Feature"
+        },
+        "taskStatus": "Pending",
+        "taskDetails": {
+            "client": "123 Industries",
+            "project": "Feature Design",
+            "additionalDetails": "Vivamus ut lectus ut turpis dignissim commodo. Integer fringilla posuere lorem, et accumsan sapien gravida vel."
+        }
+    },
+    {
+        "employeeDetails": {
+            "employeeName": "Alice Williams",
+            "taskAssigned": "Implement Backend API"
+        },
+        "taskStatus": "In Progress",
+        "taskDetails": {
+            "client": "Tech Solutions Inc.",
+            "project": "Backend Implementation",
+            "additionalDetails": "Duis vel metus a nisi volutpat varius. Sed tincidunt, nisl a tincidunt tincidunt, neque mi accumsan est, vel euismod dui justo vel nulla."
+        }
+    },
+    {
+        "employeeDetails": {
+            "employeeName": "Charlie Brown",
+            "taskAssigned": "Coordinate Project Kickoff Meeting"
+        },
+        "taskStatus": "Not Started",
+        "taskDetails": {
+            "client": "Global Innovations",
+            "project": "Project Kickoff",
+            "additionalDetails": "Fusce vel dolor vel justo aliquet rhoncus a eu ligula. Sed vestibulum ex non ligula fermentum vestibulum."
+        }
+    }
+]

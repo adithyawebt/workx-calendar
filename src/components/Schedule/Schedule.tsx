@@ -3,28 +3,31 @@ import styles from './Schedule.module.scss';
 
 import RightArrow from '../../assets/icons/circle-right.svg';
 import LeftArrow from '../../assets/icons/circle-left.svg';
+import DownArrow from '../../assets/icons/chevron-down.svg';
+import UpArrow from '../../assets/icons/chevron-up.svg';
 
 import summaryData from '../../mockData/summaryData.json';
-import projectData from '../../mockData/projectData.json';
+import taskData from '../..//mockData/taskData.json'
 import leaveData from '../../mockData/leaveData.json'
 
-// import { SummaryInfo, ProjectInfo, LeaveInfo } from '../../interfaces/ScheduleInterface';
+// import { SummaryInfo, ProjectInfo, LeaveInfo } from '../../interfaces/ScheduleInterface'; //importing interface for future purposes
 
-interface ScheduleProps {
+interface OwnProps {
     selectedDay: number;
     onDayChange: (newDay: number) => void,
 }
 
 const Schedule = ({
     selectedDay,
-    onDayChange }: ScheduleProps) => {
+    onDayChange }: OwnProps) => {
     const [selectedTab, setSelectedTab] = useState<'Summary' | 'Tasks' | 'Leaves'>('Summary');
+    const [taskVisibility, setTaskVisibility] = useState<boolean[]>(new Array(taskData.length).fill(false));
 
-    const statusClassMap: Record<string, string> = {
-        OnTrack: styles.onTrack,
-        Risk: styles.risk,
-        Archived: styles.archived,
-    };
+    const handleTaskClick = (index: number) => {
+        const newTaskVisibility = [...taskVisibility];
+        newTaskVisibility[index] = !newTaskVisibility[index];
+        setTaskVisibility(newTaskVisibility);
+    }
 
     return (
         <div className={styles.schedule}>
@@ -79,25 +82,35 @@ const Schedule = ({
                         </div>
                         <div className={styles.divider}></div>
                         <div className={styles.tasksHolder}>
-                            {projectData.map((project, index) => (
-                                <div key={index} className={styles.project}>
-                                    <div className={styles.projectHeader}>
-                                        <div className={styles.projectName}>
-                                            <span>{project.projectName}</span>
-                                            <span>{project.clientName}</span>
+                            {taskData.map((task, index) => (
+                                <>
+                                    <div key={index} className={styles.task}>
+                                        <div className={styles.employeeDetails} onClick={() => handleTaskClick(index)}>
+                                            <span>Employee: {task.employeeDetails.employeeName}</span>
+                                            <span>Task: {task.employeeDetails.taskAssigned}</span>
+                                            <div className={styles.taskStatus}>
+                                                <span>{task.taskStatus}</span>
+                                            </div>
+                                            <img
+                                                src={taskVisibility[index] ? UpArrow : DownArrow}
+                                                alt=""
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    handleTaskClick(index);
+                                                }}
+                                            />
                                         </div>
-                                        <div className={`${styles.projectStatus} ${statusClassMap[project.status]}`}>
-                                            {project.status}
-                                        </div>
+                                        {taskVisibility[index] ? (
+                                            <div className={styles.taskDetails}>
+                                                <div className={styles.dividerSmall}></div>
+                                                <span>Client: {task.taskDetails.client}</span>
+                                                <span>Project: {task.taskDetails.project}</span>
+                                                <span>Details: {task.taskDetails.additionalDetails}</span>
+                                            </div>
+                                        ) : ''}
                                     </div>
-                                    {project.tasks.map((task, taskIndex) => (
-                                        <li key={taskIndex} className={styles.projectDetails}>
-                                            <span>{task.taskName}:</span>
-                                            <span>{task.assignedTo}</span>
-                                        </li>
-                                    ))}
                                     <div className={styles.dividerSmall}></div>
-                                </div>
+                                </>
                             ))}
                         </div>
                     </div>
