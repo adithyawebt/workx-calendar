@@ -82,6 +82,12 @@
 
         }
 
+        .contentDetails,
+        .tasksHolder,
+        .leaveContainer {
+            font-size: 12px;
+        }
+
         .contentDetails {
             width: 100%;
             display: flex;
@@ -90,7 +96,7 @@
             justify-content: center;
 
             .detailsHolder {
-                width: 100%;
+                width: 90%;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
@@ -106,6 +112,10 @@
                     align-items: flex-start;
                     justify-content: flex-start;
                     text-align: left;
+
+                    .detail {
+                        padding: 5px 0;
+                    }
                 }
             }
         }
@@ -117,16 +127,25 @@
             align-items: center;
             justify-content: center;
 
+            .employeeDetailsTemplate {
+                width: 90%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 15px;
+            }
+
             .task {
                 width: 90%;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                cursor: pointer;
 
                 .employeeDetails {
                     width: 100%;
                     display: flex;
-                    align-items: center;
+                    align-items: flex-start;
                     justify-content: space-evenly;
 
                     span {
@@ -174,49 +193,30 @@
     .leaveContainer {
         width: 90%;
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        align-items: flex-start;
+        justify-content: space-between;
 
-        .leave {
-            width: 100%;
+        .leaves,
+        .holidays {
+            width: 45%;
+            height: 100%;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
-        }
 
-        .leaveType {
-            width: 100%;
-            display: flex;
-            align-items: center;
-
-            span {
-                padding: 0px 10px;
-            }
-
-            span:nth-child(1) {
-                font-weight: 700;
+            .leave {
+                padding: 5px 0;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
 
-        .leaveDetails {
-            width: 100%;
-            display: flex;
-            align-items: center;
-
-            span {
-                padding: 0px 10px;
-            }
-
-            span:nth-child(1),
-            span:nth-child(2) {
-                font-weight: 700;
-
-                span:nth-child(1) {
-                    font-weight: 400;
-                }
-            }
+        .leaveHeading {
+            font-size: 14px;
+            font-weight: bold;
         }
+
     }
 }

@@ -3,27 +3,32 @@
         "January": [
             {
                 "employeeName": "John Doe",
-                "leaveDetails": "Vacation"
+                "leaveDetails": "Vacation",
+                "date": "2024-01-04"
             },
             {
                 "employeeName": "Alice Smith",
-                "leaveDetails": "Sick leave"
+                "leaveDetails": "Sick leave",
+                "date": "2024-01-07"
             }
         ],
         "February": [
             {
                 "employeeName": "Bob Johnson",
-                "leaveDetails": "Family emergency"
+                "leaveDetails": "Family emergency",
+                "date": "2024-02-09"
             },
             {
                 "employeeName": "Emma Brown",
-                "leaveDetails": "Personal day"
+                "leaveDetails": "Personal day",
+                "date": "2024-02-15"
             }
         ],
         "March": [
             {
                 "employeeName": "Charlie Wilson",
-                "leaveDetails": "Parental leave"
+                "leaveDetails": "Parental leave",
+                "date": "2024-03-19"
             }
         ]
     },

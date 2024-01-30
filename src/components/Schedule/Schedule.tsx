@@ -23,7 +23,7 @@ const Schedule = ({
     const [selectedTab, setSelectedTab] = useState<'Summary' | 'Tasks' | 'Leaves'>('Summary');
     const [taskVisibility, setTaskVisibility] = useState<boolean[]>(new Array(taskData.length).fill(false));
 
-    const [leaveData, setLeaveData] = useState<Record<string, { employeeName: string; leaveDetails: string; }[]> | null>(null);
+    const [leaveData, setLeaveData] = useState<Record<string, { employeeName: string; leaveDetails: string; date: string }[]> | null>(null);
     const [holidayData, setHolidayData] = useState<Record<string, { name: string; date: string; }[]> | null>(null);
     const [currentDisplayedMonth, setCurrentDisplayedMonth] = useState<number>(selectedMonth);
 
@@ -54,12 +54,12 @@ const Schedule = ({
     }
 
     const getLeavesForMonth = () => {
-        const monthKey = months[selectedMonth];
+        const monthKey = months[currentDisplayedMonth];
         return leaveData?.[monthKey] || [];
     };
 
     const getHolidaysForMonth = () => {
-        const monthKey = months[selectedMonth];
+        const monthKey = months[currentDisplayedMonth];
         return holidayData?.[monthKey] || [];
     };
 
@@ -115,7 +115,7 @@ const Schedule = ({
                                         <div className={styles.time}>{summary.time}</div>
                                         <div className={styles.details}>
                                             {summary.details.map((detail, detailIndex) => (
-                                                <li key={detailIndex}>{detail}</li>
+                                                <div className={styles.detail} key={detailIndex}>{detail}</div>
                                             ))}
                                         </div>
                                     </div>
@@ -134,12 +134,18 @@ const Schedule = ({
                         </div>
                         <div className={styles.divider}></div>
                         <div className={styles.tasksHolder}>
+                            <div className={styles.employeeDetailsTemplate}>
+                                <span>Employee</span>
+                                <span>Task</span>
+                                <span>Status</span>
+                            </div>
+                            <div className={styles.dividerSmall}></div>
                             {taskData.map((task, index) => (
                                 <>
                                     <div key={index} className={styles.task}>
                                         <div className={styles.employeeDetails} onClick={() => handleTaskClick(index)}>
-                                            <span>Employee: {task.employeeDetails.employeeName}</span>
-                                            <span>Task: {task.employeeDetails.taskAssigned}</span>
+                                            <span>{task.employeeDetails.employeeName}</span>
+                                            <span>{task.employeeDetails.taskAssigned}</span>
                                             <div className={styles.taskStatus}>
                                                 <span>{task.taskStatus}</span>
                                             </div>
@@ -177,20 +183,21 @@ const Schedule = ({
                         <div className={styles.divider}></div>
                         <div className={styles.leaveContainer}>
                             <div className={styles.leaves}>
-                                <span>Leaves</span>
-                                <ul>
-                                    {getLeavesForMonth().map((leave, index) => (
-                                        <li key={index}>{leave.employeeName}: {leave.leaveDetails}</li>
-                                    ))}
-                                </ul>
+                                <span className={styles.leaveHeading}>Leaves:</span>
+                                {getLeavesForMonth().map((leave, index) => (
+                                    <div className={styles.leave} key={index}>
+                                        {leave.employeeName}: {leave.leaveDetails} ({leave.date})
+                                    </div>
+                                ))}
                             </div>
                             <div className={styles.holidays}>
-                                <span>Holidays</span>
-                                <ul>
-                                    {getHolidaysForMonth().map((holiday, index) => (
-                                        <li key={index}>{holiday.name}: {holiday.date}</li>
-                                    ))}
-                                </ul>
+                                <span className={styles.leaveHeading}>Holidays:</span>
+                                {getHolidaysForMonth().map((holiday, index) => (
+                                    <div className={styles.leave} key={index}>
+                                        <span>{holiday.name}:</span>
+                                        <span>{holiday.date}</span>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>
