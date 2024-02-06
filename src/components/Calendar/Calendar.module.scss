@@ -82,10 +82,6 @@
         border-radius: 4px;
         cursor: pointer;
 
-        &:hover {
-            background-color: rgba($color: #000000, $alpha: 0.2);
-        }
-
         span {
             display: block;
         }
@@ -103,5 +99,11 @@
         max-width: 600px;
         margin: 0 auto;
         border: 1px solid $light;
+    }
+
+    .day {
+        &:hover {
+            background-color: rgba($color: #000000, $alpha: 0.2);
+        }
     }
 }

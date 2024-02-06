@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Calendar.module.scss';
 import Schedule from '../Schedule/Schedule';
+import { EmployeeData } from '../../interfaces/ScheduleInterface';
 
 const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 const Calendar = () => {
+
     const getDaysArray = (year: number, month: number) => {
         const daysArray = [];
         const firstDayOfMonth = new Date(year, month, 1);
@@ -22,10 +24,13 @@ const Calendar = () => {
         return daysArray;
     };
 
+    const CHECK_IN_OUT_URL = 'https://workx.webtrigon.com/api/v1/check-in-out/';
+    const BEARER_TOKEN = 'ad3fca0e1940fa2a53f899e59c704e41f075da12';
+
     const [selectedDay, setSelectedDay] = useState<number>(new Date().getDate());
     const [currentYear, setCurrentYear] = useState<number>(new Date().getFullYear());
     const [currentMonth, setCurrentMonth] = useState<number>(new Date().getMonth());
-    // const [events, setEvents] = useState<Record<number, string[]>>({}); // Events state - not used yet
+    const [employeeData, setEmployeeData] = useState<EmployeeData[]>([]);
 
     const months = [
         'January', 'February', 'March', 'April',
@@ -33,7 +38,7 @@ const Calendar = () => {
         'September', 'October', 'November', 'December'
     ];
 
-    const years = Array.from({ length: 15 }, (_, index) => currentYear + index);
+    const years = Array.from({ length: 11 }, (_, index) => currentYear - 5 + index);
 
     const handleMonthChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedMonth = parseInt(e.target.value, 10);
@@ -59,6 +64,35 @@ const Calendar = () => {
             setCurrentYear(currentYear);
         }
     };
+
+    const fetchDayData = (formattedDate: string) => {
+        const dayURL = `${CHECK_IN_OUT_URL}?date=${formattedDate}`;
+        fetch(dayURL, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Token ${BEARER_TOKEN}`,
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((data: { results: EmployeeData[] }) => {
+                setEmployeeData(data.results);
+            })
+            .catch((error) => {
+                console.error('There was a problem with your fetch operation:', error);
+            });
+    };
+
+    useEffect(() => {
+        const formattedDate = `${currentYear}-${currentMonth + 1}-${selectedDay}`;
+        fetchDayData(formattedDate);
+    }, [currentYear, currentMonth, selectedDay]);
+
 
     return (
         <div className={styles.calendar}>
@@ -95,7 +129,8 @@ const Calendar = () => {
                 selectedDay={selectedDay}
                 selectedMonth={currentMonth}
                 selectedYear={currentYear}
-                onDayChange={handleDayChange} />
+                onDayChange={handleDayChange}
+                employeeData={employeeData} />
         </div>
     );
 };

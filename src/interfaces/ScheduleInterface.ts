@@ -10,17 +10,36 @@ interface LeaveInfo {
     endDate: string;
 }
 
-interface TaskInfo {
-    employeeDetails: {
-        employeeName: string;
-        taskAssigned: string;
+interface User {
+    id: string;
+    name: string;
+    email: string;
+}
+
+interface ProjectStatus {
+    checkIn: {
+        label: string;
+        status: number;
+        time: string;
+        plannedTasks: string;
     };
-    taskStatus: string;
-    taskDetails: {
-        client: string;
-        project: string;
-        additionalDetails: string;
+    checkOut: {
+        taskProgression: string;
+        label: string;
+        status: number;
+        time: string;
+        reason: string;
+        tasksProgression: string;
     };
 }
 
-export type { SummaryInfo, LeaveInfo, TaskInfo };
+interface EmployeeData {
+    id: string;
+    user: User;
+    projectStatus: ProjectStatus;
+    autoCheckedOut: boolean;
+    userBlockers: null | string;
+    projectAssignment: string;
+}
+
+export type { SummaryInfo, LeaveInfo, EmployeeData };

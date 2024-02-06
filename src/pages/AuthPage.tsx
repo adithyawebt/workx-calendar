@@ -2,30 +2,43 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './AuthPage.module.scss';
 
-const LoginSignup = () => {
+const AuthPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
 
-    const [toggleAuthType, setToggleAuthType] = useState(true);
-
     const navigate = useNavigate();
+
+    const SSO_URL = 'https://workx.webtrigon.com/admin_sso/login';
 
     //temporarily added below function since logic or API yet to be made for actual login or signup - acts a redirect
     const redirectToPath = (path: string) => {
         navigate(path);
     };
 
-    //temporarily unused not to be removed as built for further API Logic for Sigup or Login
-    // const handleLogin = () => {
-    //     console.log('Logging in with:', email, password);
-    // };
+    const openGoogleSignInPopup = () => {
+        const googleSignInWindow = window.open(
+            SSO_URL,
+            '_blank',
+            'noreferrer'
+        );
 
-    // const handleGoogleLogin = () => {
-    //     console.log('Logging in with Google');
-    // };
+        window.addEventListener('message', (event) => {
+            if (event.data && event.data.token) {
+                const token = event.data.token;
+                localStorage.setItem('bearerToken', token);
+                setTimeout(() => {
+                    googleSignInWindow?.close();
+                    navigate('/home');
+                }, 500);
+            } else if (event.data === 'googleSignInFailure') {
+                googleSignInWindow?.close();
+                alert('Google Sign In Failed. Please try again or after some time.');
+            }
+        });
+    };
 
     const validateEmail = () => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -38,9 +51,7 @@ const LoginSignup = () => {
 
     return (
         <div className={styles.authContainer}>
-            <div
-                className={styles.authHeader}
-                onClick={() => setToggleAuthType(true)}>
+            <div className={styles.authHeader}>
                 Login
             </div>
             <div className={styles.authForm}>
@@ -72,17 +83,15 @@ const LoginSignup = () => {
             <div className={styles.authActions}>
                 <button
                     onClick={() => redirectToPath('/home')}
-                //  onClick={toggleAuthType ? handleLogin : ''}
                 >
-                    {toggleAuthType ? 'Login' : 'Signup'}
+                    Login
                 </button>
                 <button
-                    onClick={() => redirectToPath('/home')}
-                // onClick={handleGoogleLogin}
+                    onClick={openGoogleSignInPopup}
                 >Sign in with Google</button>
             </div>
         </div >
     );
 };
 
-export default LoginSignup;
+export default AuthPage;
