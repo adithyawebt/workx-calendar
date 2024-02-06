@@ -184,20 +184,25 @@ const Schedule = ({
                         </div>
                         <div className={styles.divider}></div>
                         <div className={styles.contentDetails}>
-                            {Object.keys(hourlyReport).map((hour: string) => (
-                                <>
-                                    <div key={hour} className={styles.detailsHolder}>
-                                        <div className={styles.time}>{`${hour} ${getPeriod(hourlyReport[hour][0].time)}`}</div>
-                                        <div className={styles.details}>
-                                            {hourlyReport[hour].map((record: HourlyRecord, index: number) => (
-                                                <div key={index} className={styles.details}>{record.event}</div>
-                                            ))}
+                            {Object.keys(hourlyReport).map((hourKey: string) => {
+                                const hour = parseInt(hourKey, 10);
+                                const period = getPeriod(hourlyReport[hour][0].time);
+                                return (
+                                    <>
+                                        <div key={hour} className={styles.detailsHolder}>
+                                            <div className={styles.time}>{`${hour % 12 || 12} ${period}`}</div>
+                                            <div className={styles.details}>
+                                                {hourlyReport[hour].map((record: HourlyRecord, index: number) => (
+                                                    <div key={index} className={styles.details}>{record.event}</div>
+                                                ))}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className={styles.dividerSmall}></div>
-                                </>
-                            ))}
+                                        <div className={styles.dividerSmall}></div>
+                                    </>
+                                );
+                            })}
                         </div>
+
                     </div>
                 )}
                 {selectedTab === 'Tasks' && (
